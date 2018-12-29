@@ -1,0 +1,10 @@
+os: osx
+language: swift
+osx_image: xcode10.1
+xcode_project: AbstractSyntaxTree.xcodeproj
+xcode_scheme: AbstractSyntaxTreeTests
+before_install:
+  - gem install xcpretty
+script:
+  - set -o pipefail && xcodebuild -project AbstractSyntaxTree.xcodeproj -scheme AbstractSyntaxTree\ macOS ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty
+  - set -o pipefail && xcodebuild test -project AbstractSyntaxTree.xcodeproj -scheme AbstractSyntaxTreeTests ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty
